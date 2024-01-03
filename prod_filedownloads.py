@@ -82,7 +82,6 @@ for item_id_chunk in read_uuids_from_checkpoint(chunk_size):
     for item_id in item_id_chunk:
         # Make an API request to fetch JSON data for the item_id
         api_url = f"{base_url}/server/api/statistics/usagereports/{item_id}_TotalDownloads"
-        #api_url = f"https://ecommons.cornell.edu/server/api/statistics/usagereports/{item_id}_TotalDownloads"
         response = requests.get(api_url)
 
         if response.status_code == 200:
