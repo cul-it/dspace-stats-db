@@ -1,0 +1,9 @@
+SOURCE_DB_HOST=source_host
+SOURCE_DB_DATABASE=source_database
+SOURCE_DB_USER=source_user
+SOURCE_DB_PASSWORD=source_password
+DEST_DB_HOST=dest_host
+DEST_DB_DATABASE=dest_database
+DEST_DB_USER=dest_user
+DEST_DB_PASSWORD=dest_password
+
