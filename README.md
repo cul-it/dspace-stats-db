@@ -6,7 +6,8 @@ Each script runs as a cronjob and data is updated or inserted depending existanc
 
 SQL Examples
 
-```select handle,uuid, "views", downloads, title, filename, i.owning_collection
+```
+select handle,uuid, "views", downloads, title, filename, i.owning_collection
 from api_filedownload_stats afs 
 join api_itemview_stats ais on ais.item_id = afs.item_id 
 join item i on i.uuid = ais.item_id 
@@ -14,20 +15,24 @@ join handle h on h.resource_id = i.uuid
 where i.owning_collection ='7603db13-cd5d-46ce-abd3-05c6f3b41b0b'
 order by handle 
 ```
-```select sum("views")
+```
+select sum("views")
 from api_itemview_stats ais 
 join item i on i.uuid = ais.item_id 
 join handle h on h.resource_id = i.uuid
 where i.owning_collection ='7603db13-cd5d-46ce-abd3-05c6f3b41b0b'
 ```
-```select sum("views")
+```
+select sum("views")
 from api_itemview_stats ais 
 ```
-```select sum("downloads")
+```
+select sum("downloads")
 from api_filedownload_stats afs 
 ```
 * -- rollup download totals by handle, title, and filename. 
-```select handle, title, afs.filename,sum(downloads) as downloads
+```
+select handle, title, afs.filename,sum(downloads) as downloads
 from api_filedownload_stats afs 
 join api_itemview_stats ais on ais.item_id = afs.item_id 
 join item i on i.uuid = ais.item_id 
@@ -38,7 +43,8 @@ group by rollup (handle, title, afs.filename)
 order by handle
 ```
 * -- could just group by handle,title, sum 
-```select handle, title, sum("views") as views, sum(downloads) as downloads
+```
+select handle, title, sum("views") as views, sum(downloads) as downloads
 from api_filedownload_stats afs 
 join api_itemview_stats ais on ais.item_id = afs.item_id 
 join item i on i.uuid = ais.item_id 
