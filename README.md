@@ -30,19 +30,19 @@ from api_itemview_stats ais
 select sum("downloads")
 from api_filedownload_stats afs 
 ```
-* -- rollup download totals by handle, title, and filename. 
+-- rollup download totals by handle, title, and filename. 
 ```
 select handle, title, afs.filename,sum(downloads) as downloads
 from api_filedownload_stats afs 
 join api_itemview_stats ais on ais.item_id = afs.item_id 
 join item i on i.uuid = ais.item_id 
 join handle h on h.resource_id = i.uuid
-* -- where i.owning_collection ='7603db13-cd5d-46ce-abd3-05c6f3b41b0b'
+-- where i.owning_collection ='7603db13-cd5d-46ce-abd3-05c6f3b41b0b'
 group by rollup (handle, title, afs.filename)
-* --group by ais.item_id
+--group by ais.item_id
 order by handle
 ```
-* -- could just group by handle,title, sum 
+-- could just group by handle,title, sum 
 ```
 select handle, title, sum("views") as views, sum(downloads) as downloads
 from api_filedownload_stats afs 
@@ -51,6 +51,6 @@ join item i on i.uuid = ais.item_id
 join handle h on h.resource_id = i.uuid
 where i.owning_collection ='7603db13-cd5d-46ce-abd3-05c6f3b41b0b'
 group by (handle, title)
-* -- group by ais.item_id
+-- group by ais.item_id
 order by title
 ```
