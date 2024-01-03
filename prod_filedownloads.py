@@ -6,11 +6,18 @@ import time
 from datetime import datetime
 from dotenv import load_dotenv
 
+# Load environment variables from the .env file
+load_dotenv()
+
+#Directory for txt files and base url for your DSpace api.
+directory = os.getenv("SERVER_DIR")
+base_url = os.getenv("API_URL")
+
 # Checkpoint file to store the last processed item_id
-checkpoint_file = "file_checkpoint.txt"
+checkpoint_file = os.path.join(directory, "file_checkpoint.txt")
 
 # File to store the UUIDs
-uuid_file = "uuids.txt"
+uuid_file = os.path.join(directory, "uuids.txt")
 
 # Function to get the last checkpointed item_id
 def get_last_checkpoint():
@@ -38,8 +45,6 @@ def read_uuids_from_checkpoint(chunk_size):
         for i in range(0, len(uuids), chunk_size):
             yield uuids[i:i + chunk_size]
 
-# Load environment variables from the .env file
-load_dotenv()
 
 # Get the last checkpointed item_id
 last_checkpoint = get_last_checkpoint()
@@ -76,7 +81,8 @@ chunk_size = 200
 for item_id_chunk in read_uuids_from_checkpoint(chunk_size):
     for item_id in item_id_chunk:
         # Make an API request to fetch JSON data for the item_id
-        api_url = f"https://ecommons.cornell.edu/server/api/statistics/usagereports/{item_id}_TotalDownloads"
+        api_url = f"{base_url}/server/api/statistics/usagereports/{item_id}_TotalDownloads"
+        #api_url = f"https://ecommons.cornell.edu/server/api/statistics/usagereports/{item_id}_TotalDownloads"
         response = requests.get(api_url)
 
         if response.status_code == 200:

@@ -7,3 +7,5 @@ DEST_DB_DATABASE=dest_database
 DEST_DB_USER=dest_user
 DEST_DB_PASSWORD=dest_password
 
+API_URL=https://yourdspace.site
+SERVER_DIR=/foo/path/
