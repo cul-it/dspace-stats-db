@@ -1,5 +1,3 @@
-# apistats_database
+# dspace-stats-db 
 
-Python code to take stats info from dspace api and insert into a postgres db and tables. For fdw querying against dspace db. 
-
-item_views should be sorted. will need to work on file downloads and other usage stats endpoints
+Supplemental scripting to import dspace 7 api usage stats into a postgresql instnace. Using foreign data wrapper (fdw), these tables can be imported as foreign tables in dspace database allowing easier reporting for file view and downloads with all relevant metadata and grouping by collections/communities. 
